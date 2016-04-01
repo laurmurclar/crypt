@@ -1,0 +1,12 @@
+<h1>Welcome Home!</h1>
+
+<h2>Groups</h2>
+
+</hr>
+
+<% @user.groups.each do |g| %>
+  <p><%= g.name %></p>
+  <!-- TODO add view files, leave group and edit members button (if owner) -->
+<% end %>
+
+<!-- TODO add create group button -->
