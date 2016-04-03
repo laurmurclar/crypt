@@ -39,9 +39,12 @@ class GroupsController < ApplicationController
       flash[:danger] = "You are not the owner of this group"
       redirect_to root_path
     end
-    
   end
 
+  def members
+    @group = Group.find_by_id params[:id]
+  end
+  
   private
   def group_params
     params.require(:group).permit(:name)

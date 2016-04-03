@@ -13,7 +13,9 @@
       <% @user.groups.each do |g| %>
         <li><%= g.name %>
           <% if (g.owner && g.owner.user_id == current_user.id) %>
-            , <%= link_to "Add member", new_member_path(id: g.id) %></li>
+            , <%= link_to "Add member", new_member_path(id: g.id) %>
+            , <%= link_to "View members", members_path(id: g.id) %>
+        </li>
           <% end %>
         <!-- TODO add view files, leave group and edit members button (if owner) -->
       <% end %>
