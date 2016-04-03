@@ -11,7 +11,7 @@
   <% if @user.groups.count > 0 %>
     <ul>
       <% @user.groups.each do |g| %>
-        <li><%= g.name %></li>
+        <li><%= g.name %>,  <%= link_to "Add member", new_member_path(id: g.id) %></li>
         <!-- TODO add view files, leave group and edit members button (if owner) -->
       <% end %>
     </ul>

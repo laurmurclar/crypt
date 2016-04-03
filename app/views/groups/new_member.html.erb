@@ -1,0 +1,7 @@
+<%= form_for @group, url: { action: "create_member" }, html: { method: :post } do |f| %>
+    <%= f.fields_for :members do |member_form| %>
+        <%= member_form.label :email %>
+        <%= member_form.text_field :email %>
+    <% end %>
+    <%= f.submit 'Add member', class: 'btn btn-info' %>
+<% end %>
