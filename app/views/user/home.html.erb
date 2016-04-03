@@ -1,12 +1,24 @@
-<h1>Welcome Home!</h1>
+<div class="row">
+  <h1>Welcome Home!</h1>
+  <p>You are signed in as <%= current_user.email %></p>
+</div>
 
-<h2>Groups</h2>
+<div class="row well">
+  <h2>Groups</h2>
 
-</hr>
+  </hr>
 
-<% @user.groups.each do |g| %>
-  <p><%= g.name %></p>
-  <!-- TODO add view files, leave group and edit members button (if owner) -->
-<% end %>
+  <% if @user.groups.count > 0 %>
+    <% @user.groups.each do |g| %>
+      <p><%= g.name %></p>
+      <!-- TODO add view files, leave group and edit members button (if owner) -->
+    <% end %>
+  <% else %>
+    <p>You don't belong to any groups yet, click the button below to create one!</p>
+  <% end %>
 
-<!-- TODO add create group button -->
+  <!-- TODO link up create group button -->
+  <%= link_to "+", "#", class: "btn btn-info" %>
+
+
+</div>
