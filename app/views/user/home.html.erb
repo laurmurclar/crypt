@@ -9,10 +9,12 @@
   </hr>
 
   <% if @user.groups.count > 0 %>
-    <% @user.groups.each do |g| %>
-      <p><%= g.name %></p>
-      <!-- TODO add view files, leave group and edit members button (if owner) -->
-    <% end %>
+    <ul>
+      <% @user.groups.each do |g| %>
+        <li><%= g.name %></li>
+        <!-- TODO add view files, leave group and edit members button (if owner) -->
+      <% end %>
+    </ul>
   <% else %>
     <p>You don't belong to any groups yet, click the button below to create one!</p>
   <% end %>
