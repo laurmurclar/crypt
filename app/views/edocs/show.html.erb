@@ -1,0 +1,18 @@
+<div class="row">
+  <h1><%= @edoc.name %></h1>
+  <%= link_to "Download encrypted file", edoc_download_path(@edoc), class: 'btn btn-info' %>
+</div>
+
+<div class="row">
+  <h3>IV:</h3>
+  <h4 class="well"><%= @edoc.iv %></h4>
+  <h3>Encrypted Symmetric Key:</h3>
+  <h4 class="well"><%= @relationship.encrypted_key %></h4>
+</div>
+
+<div class="row">
+  <h2>Instructions</h2>
+  <p>Download the encrypted file.</p>
+  <p>echo [encrypted_symmetric_key] | base64 --decode | openssl rsautl -decrypt -inkey [your_private_key.pem]</p>
+  <p>openssl aes-256-cbc -d -K [decrypted_symmetric_key] -iv [file_iv] -in [downloaded_encrypted_file] -out [output_filename]</p>
+</div>

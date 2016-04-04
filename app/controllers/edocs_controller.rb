@@ -33,6 +33,11 @@ class EdocsController < ApplicationController
     send_file edoc.doc.path
   end
 
+  def show
+    @edoc = Edoc.find(params[:id])
+    @relationship = UserDoc.where(edoc: @edoc, user: current_user).take
+  end
+
 private
 
   def edoc_params
@@ -69,6 +74,7 @@ private
   end
 
   def save_encrypted_key(key)
+    key = key.unpack('H*').join
     @edoc.group.members.each do |m|
       user = m.user
       pub = OpenSSL::PKey::RSA.new File.read user.key.path

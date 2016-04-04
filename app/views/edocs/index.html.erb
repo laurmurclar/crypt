@@ -6,7 +6,7 @@
   <% if @group.edocs.any? %>
     <ul>
       <% @group.edocs.each do |e| %>
-          <li><%= e.name %> - <%= link_to "Download", edoc_download_path(e) %> - <%= e.iv %></li>
+          <li><%= e.name %> - <%= link_to "Get File", edoc_path(e) %></li>
       <% end %>
     </ul>
   <% else %>
