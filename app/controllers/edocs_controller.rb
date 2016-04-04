@@ -22,10 +22,15 @@ class EdocsController < ApplicationController
     end
   end
 
+  def download
+    edoc = Edoc.find(params[:id])
+    send_file edoc.doc.path
+  end
+
 private
 
   def edoc_params
-    params.require(:edoc).permit(:name)
+    params.require(:edoc).permit(:name, :doc)
   end
 
 end

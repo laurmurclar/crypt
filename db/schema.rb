@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404140909) do
+ActiveRecord::Schema.define(version: 20160404143905) do
 
   create_table "edocs", force: :cascade do |t|
     t.string   "name",       null: false
     t.integer  "group_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "doc"
   end
 
   create_table "groups", force: :cascade do |t|

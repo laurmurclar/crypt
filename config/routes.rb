@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :groups
   resources :members, only: [:index, :new, :create]
   resources :edocs, only: [:index, :new, :create]
-
+  get '/edocs/:id', to: 'edocs#download', as: 'edoc_download'
 end
