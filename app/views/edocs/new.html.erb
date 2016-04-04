@@ -1,0 +1,14 @@
+<div class="row">
+  <h1>Add file</h1>
+</div>
+
+<div class="row">
+  <%= form_for @edoc do |f| %>
+    <%= f.hidden_field :group_id %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.submit 'Add file', class: 'btn btn-info' %>
+  <% end %>
+</div>

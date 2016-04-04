@@ -5,11 +5,13 @@
 <div class="row">
   <% if @group.edocs.any? %>
     <ul>
-      <%= @group.edocs.each do |e| %>
+      <% @group.edocs.each do |e| %>
           <li><%= e.name %></li>
       <% end %>
     </ul>
   <% else %>
     <p>No files for this group</p>
   <% end %>
+
+  <%= link_to "+", new_edoc_path(group_id: @group.id), class: "btn btn-info" %>
 </div>

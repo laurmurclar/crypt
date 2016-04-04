@@ -4,4 +4,28 @@ class EdocsController < ApplicationController
     @group = Group.find_by_id params[:group_id]
   end
 
+  def new
+    group = Group.find_by_id params[:group_id]
+    @edoc = group.edocs.new
+  end
+
+  def create
+    group = Group.find_by_id params[:edoc][:group_id]
+    @edoc = group.edocs.new(edoc_params)
+
+    if @edoc.save
+      flash[:success] = "File added"
+      redirect_to edocs_path(group_id: group)
+    else
+      flash[:success] = "Invalid file"
+      render :new
+    end
+  end
+
+private
+
+  def edoc_params
+    params.require(:edoc).permit(:name)
+  end
+
 end
