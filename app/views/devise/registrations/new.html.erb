@@ -32,3 +32,13 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<div class="row">
+  <h3>To generate key files:</h3>
+  <p>openssl genrsa -out [my_private_key_filename.pem] 1024</p>
+  <p>openssl rsa -in [my_private_key_filename.pem] -pubout -out [my_public_key_filename.pem]</p>
+
+  <h3>Example:</h3>
+  <p>openssl genrsa -out private.pem 1024</p>
+  <p>openssl rsa -in private.pem -pubout -out public.pem</p>
+</div>
