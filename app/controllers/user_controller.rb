@@ -3,6 +3,7 @@ class UserController < ApplicationController
 
   def home
     @user = current_user
+    @key = File.read(current_user.key.path)
   end
 
 end
