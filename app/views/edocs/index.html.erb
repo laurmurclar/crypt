@@ -1,0 +1,15 @@
+<div class="row">
+  <h1>Files for <%= @group.name %></h1>
+</div>
+
+<div class="row">
+  <% if @group.edocs.any? %>
+    <ul>
+      <%= @group.edocs.each do |e| %>
+          <li><%= e.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No files for this group</p>
+  <% end %>
+</div>
