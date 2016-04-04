@@ -17,8 +17,9 @@ class EdocsController < ApplicationController
       flash[:success] = "File added"
 
       # encrypt
-      encrypt_doc
+      key = encrypt_doc
       @edoc.save
+      save_encrypted_key(key)
 
       redirect_to edocs_path(group_id: group)
     else
@@ -64,6 +65,16 @@ private
     end
 
     File.delete("file.bin")
+    return key
+  end
+
+  def save_encrypted_key(key)
+    @edoc.group.members.each do |m|
+      user = m.user
+      pub = OpenSSL::PKey::RSA.new File.read user.key.path
+      e_key = Base64.encode64(pub.public_encrypt(key))
+      ud = UserDoc.create(user: user, edoc: @edoc, encrypted_key: e_key)
+    end
   end
 
 end

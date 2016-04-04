@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404182721) do
+ActiveRecord::Schema.define(version: 20160404201037) do
 
   create_table "edocs", force: :cascade do |t|
     t.string   "name",       null: false
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20160404182721) do
     t.string   "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_docs", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "edoc_id",       null: false
+    t.binary   "encrypted_key", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
