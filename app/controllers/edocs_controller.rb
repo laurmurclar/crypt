@@ -13,7 +13,7 @@ class EdocsController < ApplicationController
     group = Group.find_by_id params[:edoc][:group_id]
     @edoc = group.edocs.new(edoc_params)
 
-    if @edoc.save
+    if @edoc.valid?
       flash[:success] = "File added"
 
       # encrypt
@@ -41,6 +41,8 @@ class EdocsController < ApplicationController
       end
       File.delete("file.bin")
 
+      @edoc.save
+      
       redirect_to edocs_path(group_id: group)
     else
       flash[:success] = "Invalid file"
