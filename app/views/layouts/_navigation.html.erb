@@ -1,5 +1,6 @@
 <div class="row">
   <% if user_signed_in? %>
     <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-info" %>
+    <%= link_to "My Groups", root_path, class: "btn btn-info" %>
   <% end %>
 </div>
