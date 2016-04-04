@@ -15,6 +15,32 @@ class EdocsController < ApplicationController
 
     if @edoc.save
       flash[:success] = "File added"
+
+      # encrypt
+      cipher = OpenSSL::Cipher.new('aes-256-cbc')
+      cipher.encrypt
+      key = cipher.random_key
+      iv = cipher.random_iv
+
+      buf = ""
+      File.open("file.bin", "wb") do |outf|
+        File.open(@edoc.doc.path, "rb") do |inf|
+          while inf.read(4096, buf)
+            outf << cipher.update(buf)
+          end
+          outf << cipher.final
+        end
+      end
+
+      File.open("file.bin", "rb") do |input|
+        File.open(@edoc.doc.path, "wb") do |output|
+          while buff = input.read(4096)
+            output.write(buff)
+          end
+        end
+      end
+      File.delete("file.bin")
+
       redirect_to edocs_path(group_id: group)
     else
       flash[:success] = "Invalid file"
