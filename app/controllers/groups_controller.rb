@@ -41,29 +41,10 @@ class GroupsController < ApplicationController
     end
   end
 
-  def remove_member
-    @group = Group.find_by_id(params[:id])
-    owner = @group.owner
-
-    if (owner && owner.user_id == current_user.id)
-      @member = @group.members.find_by(user_id: params[:user_id])
-      if @member.destroy
-        flash[:success] = "Member removed"
-        render :members
-      else
-        flash[:danger] = "Error removing member"
-        render :members
-      end
-    else
-      flash[:danger] = "You are not the owner of this group"
-      redirect_to root_path
-    end
-  end
-
   def members
     @group = Group.find_by_id params[:id]
   end
-
+  
   private
   def group_params
     params.require(:group).permit(:name)

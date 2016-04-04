@@ -5,11 +5,7 @@
 <div class="row">
   <ul>
     <% @group.members.each do |m| %>
-      <li><%= m.user.email %>
-          <% if (@group.owner && @group.owner.user_id == current_user.id && m.user.id != current_user.id) %>
-            <%= link_to "Remove", remove_member_path(id: @group, user_id: m.user), method: :delete %>
-          <% end %>
-      </li>
+      <li><%= m.user.email %></li>
     <% end %>
   </ul>
 </div>
