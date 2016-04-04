@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   root to: "user#home"
 
   resources :groups
-  get '/groups/:id/member', to: 'groups#new_member', as: 'new_member'
-  post '/groups/:id/member', to: 'groups#create_member', as: 'create_member'
-  get '/groups/:id/members', to: 'groups#members', as: 'members'
+  resources :members, only: [:index, :new, :create]
 
 end

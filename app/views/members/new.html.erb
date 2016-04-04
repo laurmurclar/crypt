@@ -1,0 +1,10 @@
+<%= form_for @member do |f| %>
+    <%= f.hidden_field :group_id %>
+
+    <%= f.fields_for :user do |user_form| %>
+      <%= user_form.label :email %>
+      <%= user_form.text_field :email %>
+    <% end %>
+
+    <%= f.submit 'Add member', class: 'btn btn-info' %>
+<% end %>
