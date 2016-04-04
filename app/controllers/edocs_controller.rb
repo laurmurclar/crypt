@@ -21,6 +21,7 @@ class EdocsController < ApplicationController
       cipher.encrypt
       key = cipher.random_key
       iv = cipher.random_iv
+      @edoc.iv = iv.unpack('H*').join
 
       buf = ""
       File.open("file.bin", "wb") do |outf|
